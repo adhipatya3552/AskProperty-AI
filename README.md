@@ -53,39 +53,6 @@
 
 ---
 
-## 📂 Folder Structure
-
-```bash
-askproperty-ai/
-├── .gitignore
-├── index.html             # HTML template with meta tags and root div
-├── package.json           # Dependencies and scripts
-├── tsconfig.json          # TypeScript config
-├── vite.config.ts         # Vite configuration
-├── postcss.config.js      # PostCSS for Tailwind
-├── tailwind.config.js     # Tailwind CSS settings
-├── src/
-│   ├── main.tsx           # React entrypoint
-│   ├── index.css          # Tailwind base imports
-│   ├── App.tsx            # App component orchestrating layout and Chatbot
-│   ├── components/        # UI modules:
-│   │   ├── Header.tsx     # Landing and navigation header
-│   │   ├── Chatbot.tsx    # Conversational chatbot UI
-│   │   ├── About.tsx      # About section
-│   │   ├── Contact.tsx    # Contact form
-│   │   ├── StatsChart.tsx # Chart component for market insights
-│   │   └── Footer.tsx     # Site footer
-│   ├── services/          # API and chat service
-│   │   └── chatService.ts
-│   ├── types/             # Shared TypeScript interfaces
-│   │   └── property.ts
-│   └── context/           # React context for modals and UI state
-│       └── ModalsContext.tsx
-└── public/                # Static assets and favicon
-```
-
----
-
 ## 🚀 Installation & Setup
 
 1. **Clone the repo**
