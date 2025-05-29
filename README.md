@@ -81,7 +81,7 @@ askproperty-ai/
 │   │   └── property.ts
 │   └── context/           # React context for modals and UI state
 │       └── ModalsContext.tsx
-└── public/                # Static assets and favicon
+│
 ```
 
 ---
