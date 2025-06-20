@@ -1,8 +1,6 @@
 import { ChatRequestParams } from '../types/property';
-import dotenv from 'dotenv';
-dotenv.config();
 
-const API_KEY = process.env.OPENROUTER_API_KEY;
+const API_KEY = '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';
 
 export const getChatResponse = async (params: ChatRequestParams) => {
   // In a real implementation, this would call the OpenRouter API

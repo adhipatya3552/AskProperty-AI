@@ -184,25 +184,24 @@ const Chatbot: React.FC = () => {
       case 'results': {
         const inputLower = input.trim().toLowerCase();
         const matches = newState.propertyMatches || [];
-      
+        
         if (inputLower === 'yes' || inputLower === 'y') {
           if (matches.length > 0) {
-            // Show all contacts directly
             const contacts = matches
               .map(m => `Location: ${m.location}\nSeller: ${m.seller}\nContact: ${m.contact}`)
               .join('\n\n');
             
             botMessages.push({
-              text: `Great! Here are the direct contacts:\n\n${contacts}`,
+              text: `Great! Here are the direct contacts:\n\n${contacts}.`,
               sender: 'bot'
             });
+            newState.currentStep = 'connection';
           } else {
             botMessages.push({
               text: 'No properties available for connection',
               sender: 'bot'
             });
           }
-          newState.currentStep = 'connection';
         } else {
           botMessages.push({
             text: 'Would you like to try different search criteria?',
@@ -214,13 +213,27 @@ const Chatbot: React.FC = () => {
       }
 
       case 'connection': {
-        // Ask final question
-        botMessages.push({ 
-          text: 'Is there anything else I can help you with regarding real estate properties?', 
-          sender: 'bot' 
-        });
-        // Set next step to handle response
-        newState.currentStep = 'final';
+        const inputLower = input.trim().toLowerCase();
+        const thanksPattern = /^thanks?(?: for the (?:info|information))?$/i;
+        
+        if (thanksPattern.test(inputLower)) {
+          botMessages.push({ 
+            text: 'Is there anything else I can help you with regarding real estate properties?', 
+            sender: 'bot' 
+          });
+          newState.currentStep = 'final';
+        } else {
+          const matches = conversationState.propertyMatches || [];
+          const contacts = matches
+            .map(m => `Location: ${m.location}\nSeller: ${m.seller}\nContact: ${m.contact}`)
+            .join('\n\n');
+          
+          botMessages.push({
+            text: `Great! Here are the direct contacts:\n\n${contacts}.`,
+            sender: 'bot'
+          });
+          newState.currentStep = 'connection'; // Maintain same state
+        }
         break;
       }
 
